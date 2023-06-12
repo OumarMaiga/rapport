@@ -1,0 +1,18 @@
+{% extends "template/home.twig" %}
+
+{% block js %}
+    {{ js("script",{'module':true}) }}
+{% endblock %}
+    
+{% block home %}
+    <h2>Home</h2>
+    <div>
+        Hellooo {{ getRoute("home",{"id": 22}) }}
+        {{ getServicee() }}
+    </div>
+    {{ jRoute([
+        ["get", "home"]
+    ]) }}
+
+{% endblock %}
+

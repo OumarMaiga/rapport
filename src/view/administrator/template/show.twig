@@ -1,0 +1,24 @@
+{% set title = template.title %}
+
+{% extends "template/home.twig" %}
+
+{% block css %}
+    {{ css("style") }}
+{% endblock %}
+    
+{% block home %}
+
+    <h2>{{ template.title }}</h2>
+    <p>
+        Statut: 
+        {% if template.status %}
+            <span style="color:green">Actif
+        {% else %}
+            <span style="color:red">Inactif
+        {% endif %}
+    </p>
+    <p>
+        {{ template.overview|raw }}
+    </p>
+
+{% endblock %}

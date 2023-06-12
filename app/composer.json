@@ -1,0 +1,14 @@
+{
+    "autoload" : {
+        "psr-4" : {
+            "Controller\\" : "..\\src\\controller\\",
+            "Middleware\\Middleware\\" : "..\\src\\middleware\\middleware\\",
+            "Middleware\\RoutesCond\\" : "..\\src\\middleware\\routes-cond\\",
+            "Helper\\" : "..\\src\\helper\\",
+            "Model\\" : "..\\src\\model\\"
+        }
+    },
+    "require": {
+        "spipu/html2pdf": "^5.2"
+    }
+}

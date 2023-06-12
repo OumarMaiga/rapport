@@ -1,0 +1,50 @@
+{% set title = 'Création tde emplate' %}
+
+{% extends "template/home.twig" %}
+
+{% block css %}
+    {{ css("style") }}
+{% endblock %}
+
+{% block js %}
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.tiny.cloud/1/omdjpqfhd17dsn9me2xxarz1g3og7awzo2r3coi81zk6tn8j/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    {{ js("script-tiny") }}
+{% endblock %}
+    
+{% block home %}
+    
+    <div class="container">
+        <h2>Création de template</h2>
+
+        <p class="text-danger">
+            {{ errorMessage }}
+        </p>
+        <form action="{{ postRoute("Template:store") }}" method="post">
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="title" class="form-label">Titre</label>
+                    <input type="text" class="form-control" name="title" id="title">
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="status" class="form-label">Statut</label>
+                    <select name="status" id="status" class="form-select">
+                        <option value="1">Actif</option>
+                        <option value="0">Inactif</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-12">
+                    <label for="overview" class="form-label">Description</label>
+                    <textarea class="form-control" name="overview" id="overview"></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Save changes
+            </button>
+        </form>
+    </div>
+
+{% endblock %}

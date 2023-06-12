@@ -1,0 +1,32 @@
+{% set title = 'Edition rapport' %}
+
+{% extends "template/home.twig" %}
+
+{% block css %}
+    {{ css("style") }}
+{% endblock %}
+
+{% block js %}
+    <!--<script type="text/javascript" src="../../../node_modules/@ckeditor/ckeditor5-editor-classic/src/classiceditor.js"></script>
+    <script type="text/javascript" src="../../../plugin/ckeditor.js"></script>-->
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.tiny.cloud/1/omdjpqfhd17dsn9me2xxarz1g3og7awzo2r3coi81zk6tn8j/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    {{ js("script-tiny") }}
+{% endblock %}
+    
+{% block home %}
+    <div class="container">
+        <h1>Edition de rapport</h1>
+        <form action="{{ postRoute('Rapport:export_pdf',{"name":rapport.slug}) }}" method="post" target="_blank">
+            <div class="row">
+                <div class="mb-3 col-md-12">
+                    <textarea name="rapport" id="rapport" rows="10" class="w-100">{{ rapport.overview }}</textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Exporter en pdf
+            </button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,6 @@
+.htaccess
+data.json
+config/env.json
+app/vendor/*
+vendor/*
+sabo/vendor/*

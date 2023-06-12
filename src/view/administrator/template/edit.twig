@@ -1,0 +1,55 @@
+{% set title = 'Modificaton de template' %}
+
+{% extends "template/home.twig" %}
+
+{% block css %}
+    {{ css("style") }}
+{% endblock %}
+
+{% block js %}
+    <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.tiny.cloud/1/omdjpqfhd17dsn9me2xxarz1g3og7awzo2r3coi81zk6tn8j/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    {{ js("script-tiny") }}
+{% endblock %}
+    
+{% block home %}
+    
+    <div class="container">
+        <h2>Edition de template</h2>
+
+        <p class="text-danger">
+            {{ errorMessage }}
+        </p>
+        <form action="{{ postRoute("Template:update",{"template":template.id}) }}" method="post">
+            <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="title" class="form-label">Titre</label>
+                    <input type="text" class="form-control" name="title" id="title" value="{{ template.title }}">
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="status" class="form-label">Statut</label>
+                    <select name="status" id="status" class="form-select">
+                        {% if (template.status) == 1 %}
+                            {% set actif = 'selected' %}
+                        {% else %}
+                            {% set inactif = 'selected' %}
+                        {% endif %}
+                        <option {{ template.status == 1 ?? "selected=selected" }} {{ actif }} value="1">Actif</option>
+                        <option {{ template.status == 0 ?? "selected=selected" }} {{ inactif }} value="0">Inactif</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-12">
+                    <label for="overview" class="form-label">Description</label>
+                    <textarea class="form-control" name="overview" id="overview">{{ template.overview }}</textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-warning">
+                Modifier
+            </button>
+        </form>
+    </div>
+
+{% endblock %}

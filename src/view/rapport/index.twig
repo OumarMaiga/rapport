@@ -1,0 +1,57 @@
+{% set title = 'Liste des templates' %}
+
+{% extends "template/home.twig" %}
+
+{% block css %}
+    {{ css("style") }}
+{% endblock %}
+    
+{% block home %}
+
+    <h2>Templates</h2>
+    <button type="submit" class="btn btn-primary">
+        <a href="{{ getRoute('Template:create') }}" class="d-flex align-item-center text-white text-decoration-none">
+        <ion-icon name="add-outline" style="font-size:24px; color:#fff;"></ion-icon>
+            Ajouter un template
+        </a>
+    </button>
+    <p class="text-success">
+        {{ sucessMessage }}
+    </p>
+    <p class="text-danger">
+        {{ errorMessage }}
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Description</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for template in templates %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ template.title }}</td>
+                <td>
+                    {% if template.status %}
+                        Actif
+                    {% else %}
+                        Inactif
+                    {% endif %}
+                </td>
+                <td style="max-width: 10em;">{{ template.overview|striptags|length > 100 ? template.overview|striptags|slice(0, 100) ~ '...' : template.overview|striptags }}</td>
+                <td>
+                    <a href="{{ getRoute('Rapport:edit',{'template':template.id}) }}" title="Faire le rapport" class="mx-2">
+                        <ion-icon name="newspaper-outline" style="font-size:24px;color:blue"></ion-icon>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
