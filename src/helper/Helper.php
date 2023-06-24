@@ -35,9 +35,76 @@ class Helper
 
     public static function applyDataToTemplate(&$template, $data):void
     {
-        foreach($data as $key =>$value)
+        $data = Helper::formatData($data);
+
+        foreach($data as $key => $value)
         {
-            $template = str_replace('{'.$key.'}', $value, $template);
+            $template = str_replace('{'.$key.'}', $value ?? '', $template);
         }
+    }
+
+    public static function formatData(array $data):array
+    {
+        $result = [];
+        
+        foreach($data as $key => $value)
+        {
+            if(gettype($data[$key]) == "array")
+            {
+                foreach($data[$key] as $key2 => $value2)
+                {
+                    if(gettype($data[$key][$key2]) == "array")
+                    {
+                        foreach($data[$key][$key2] as $key3 => $value3)
+                        {
+                            if(gettype($data[$key][$key2][$key3]) == "array")
+                            {
+                                foreach($data[$key][$key2][$key3] as $key4 => $value4)
+                                {
+                                    if(gettype($data[$key][$key2][$key3][$key4]) == "array")
+                                    {
+                                        foreach($data[$key][$key2][$key3][$key4] as $key5 => $value5)
+                                        {
+                                            if(gettype($data[$key][$key2][$key3][$key4][$key5]) == "array")
+                                            {
+                                                foreach($data[$key][$key2][$key3][$key4][$key5] as $key6 => $value6)
+                                                {                                            
+                                                    if(gettype($data[$key][$key2][$key3][$key4][$key5][$key6]) != "array")
+                                                    {
+                                                        $result[$key.'->'.$key2.'->'.$key3.'->'.$key4.'->'.$key5.'->'.$key6] = $value6;
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                $result[$key.'->'.$key2.'->'.$key3.'->'.$key4.'->'.$key5] = $value5;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        $result[$key.'->'.$key2.'->'.$key3.'->'.$key4] = $value4;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                $result[$key.'->'.$key2.'->'.$key3] = $value3;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        $result[$key.'->'.$key2] = $value2;
+                    }
+                }
+            }
+            else
+            {
+                $result[$key] = $value;
+            }
+        }
+
+        return $result;
     }
 }

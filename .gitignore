@@ -4,3 +4,6 @@ config/env.json
 app/vendor/*
 vendor/*
 sabo/vendor/*
+bimProjects.json
+bimService.json
+sysTiers.json

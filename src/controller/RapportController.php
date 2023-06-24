@@ -30,14 +30,14 @@ class RapportController extends SaboController {
 
     public function edit($template):void
     {
-        $data = file_get_contents(ROOT . "data.json");
+        $data = file_get_contents(ROOT . "bimProjects.json");
 
         $data = $data ? json_decode($data,true) : [];
             
         try {
             $templateManager = new TemplateManager();        
             $templateData = $templateManager->getById($template);
-            Helper::applyDataToTemplate($templateData['overview'], $data);
+            Helper::applyDataToTemplate($templateData['overview'], $data['data'][0]);
         } catch (ModelCondException $e) {
             $this->getErrorMessageFrom(new MiddlewareException($e->getMessage()));
         }
