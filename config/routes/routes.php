@@ -15,7 +15,8 @@ return Route::generateFrom([
 
     Route::group('/rapport', [  
         Route::get("/", [RapportController::class, "index"], "Rapport:index"),
-        Route::get("/{template}/edit", [RapportController::class, "edit"], "Rapport:edit"),
+        Route::get("/{ref}/local-edit", [RapportController::class, "local_edit"], "Rapport:local_edit"),
+        Route::get("/{ref}/edit", [RapportController::class, "edit"], "Rapport:edit"),
         Route::post("/export-pdf/{name}", [RapportController::class, "export_pdf"], "Rapport:export_pdf")
     ]),
     Route::group('/template', [  

@@ -16,7 +16,7 @@ use Sabo\Model\Model\SaboModel;
 #[TableName("template")]
 class TemplateModel extends SaboModel
 {
-	#[TableColumn("id",false,new PrimaryKeyCond(false))]
+	#[TableColumn("id",false,new PrimaryKeyCond(true, false))]
 	protected string $id;
 
 	#[TableColumn("title",true,new RegexCond(".{2,255}", "Erreur sur le title"))]
@@ -30,6 +30,9 @@ class TemplateModel extends SaboModel
 
 	#[TableColumn("status",false,new RegexCond("^[0|1]$", "Erreur sur le statut"))]
 	protected int $status = 1;
+
+	#[TableColumn("catalog_id",true,new RegexCond(".{2,255}", "Erreur sur le catalog_id"))]
+	protected ?string $catalog_id = NULL;
 
 	#[TableColumn("created_by",true,new RegexCond("^[0-9]*$", "Erreur sur l'utilisateur de création"))]
 	protected ?int $created_by = NULL;

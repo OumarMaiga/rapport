@@ -36,6 +36,7 @@ class TemplateManager extends SaboMiddleware
                     "slug" => $data->getAttribute("slug"),
                     "overview" => $data->getAttribute("overview"),
                     "status" => $data->getAttribute("status"),
+                    "catalog_id" => $data->getAttribute("catalog_id"),
                     "created_by" => $data->getAttribute("created_by"),
                     "created_at" => $data->getAttribute("created_at"),
                     "updated_at" => $data->getAttribute("updated_at")
@@ -69,6 +70,75 @@ class TemplateManager extends SaboMiddleware
                     "slug" => $result->getAttribute("slug"),
                     "overview" => $result->getAttribute("overview"),
                     "status" => $result->getAttribute("status"),
+                    "catalog_id" => $result->getAttribute("catalog_id"),
+                    "created_by" => $result->getAttribute("created_by"),
+                    "created_at" => $result->getAttribute("created_at"),
+                    "updated_at" => $result->getAttribute("updated_at")
+                ];
+            }
+            
+        } catch (TypeError $e) {
+            $this->throwException($e->getMessage());
+        }
+        return $templateData;
+    }
+
+    /**
+     * Recuperer le template par son slug
+     * 
+     * @return void
+     */
+    public function getBySlug($template):array
+    {
+        $templateData = [];
+        try {
+            
+            $result = TemplateModel::find(["slug" => $template]);
+
+            if(!empty($result))
+            {
+                $result = $result[0];
+                $templateData = [
+                    "id" => $result->getAttribute("id"),
+                    "title" => $result->getAttribute("title"),
+                    "slug" => $result->getAttribute("slug"),
+                    "overview" => $result->getAttribute("overview"),
+                    "status" => $result->getAttribute("status"),
+                    "catalog_id" => $result->getAttribute("catalog_id"),
+                    "created_by" => $result->getAttribute("created_by"),
+                    "created_at" => $result->getAttribute("created_at"),
+                    "updated_at" => $result->getAttribute("updated_at")
+                ];
+            }
+            
+        } catch (TypeError $e) {
+            $this->throwException($e->getMessage());
+        }
+        return $templateData;
+    }
+
+    /**
+     * Recuperer le template par son catalog_id
+     * 
+     * @return void
+     */
+    public function getByCatalog($template):array
+    {
+        $templateData = [];
+        try {
+            
+            $result = TemplateModel::find(["catalog_id" => $template]);
+
+            if(!empty($result))
+            {
+                $result = $result[0];
+                $templateData = [
+                    "id" => $result->getAttribute("id"),
+                    "title" => $result->getAttribute("title"),
+                    "slug" => $result->getAttribute("slug"),
+                    "overview" => $result->getAttribute("overview"),
+                    "status" => $result->getAttribute("status"),
+                    "catalog_id" => $result->getAttribute("catalog_id"),
                     "created_by" => $result->getAttribute("created_by"),
                     "created_at" => $result->getAttribute("created_at"),
                     "updated_at" => $result->getAttribute("updated_at")
@@ -99,10 +169,10 @@ class TemplateManager extends SaboMiddleware
                 $this->throwException("Ce template existe déjà");
 
             $template_model
-                ->setAttribute("id", $slug)
                 ->setAttribute("title", $_POST["title"])
                 ->setAttribute("slug", $slug)
                 ->setAttribute("overview", $_POST["overview"])
+                ->setAttribute("catalog_id", $_POST["catalog_id"])
                 ->setAttribute("status", $_POST["status"]);
 
             if(!$template_model->create())
@@ -146,6 +216,7 @@ class TemplateManager extends SaboMiddleware
             $templateModel
                 ->setAttribute("title", $_POST["title"])
                 ->setAttribute("overview", $_POST["overview"])
+                ->setAttribute("catalog_id", $_POST["catalog_id"])
                 ->setAttribute("status", $_POST["status"]);
 
             if(!$templateModel->update())

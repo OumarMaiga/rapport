@@ -6,7 +6,7 @@
     {{ css("style") }}
 {% endblock %}
     
-{% block home %}
+{% block body %}
 
     <h2>Templates</h2>
     <button type="submit" class="btn btn-primary">
@@ -27,6 +27,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Titre</th>
                 <th scope="col">Statut</th>
+                <th scope="col" style="width: 260px;">Catalogue</th>
                 <th scope="col">Description</th>
                 <th scope="col">Action</th>
             </tr>
@@ -43,6 +44,7 @@
                         Inactif
                     {% endif %}
                 </td>
+                <td>{{ template.catalog_id }}</td>
                 <td style="max-width: 10em;">{{ template.overview|striptags|length > 100 ? template.overview|striptags|slice(0, 100) ~ '...' : template.overview|striptags }}</td>
                 <td>
                     <a href="{{ getRoute('Template:show',{'template':template.id}) }}" title="Voir" class="mx-2">

@@ -44,7 +44,7 @@ class TemplateController extends SaboController
         try {
             $templateManager->store();
         } catch (MiddlewareException $e) {
-            $this->setFlashData("template:templateData", array_merge(["id"=>$template],$_POST));
+            $this->setFlashData("template:templateData", $_POST);
             $this->setFlashData("template:errorMessage", $e->getMessage());
             $this->redirectToRoute('Template:create');
         }

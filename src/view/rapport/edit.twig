@@ -1,6 +1,6 @@
 {% set title = 'Edition rapport' %}
 
-{% extends "template/home.twig" %}
+{% extends "template/main.twig" %}
 
 {% block css %}
     {{ css("style") }}
@@ -14,7 +14,7 @@
     {{ js("script-tiny") }}
 {% endblock %}
     
-{% block home %}
+{% block body %}
     <div class="container">
         <h1>Edition de rapport</h1>
         <form action="{{ postRoute('Rapport:export_pdf',{"name":rapport.slug}) }}" method="post" target="_blank">

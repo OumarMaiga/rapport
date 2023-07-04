@@ -6,7 +6,7 @@
     {{ css("style") }}
 {% endblock %}
     
-{% block home %}
+{% block body %}
 
     <h2>Templates</h2>
     <button type="submit" class="btn btn-primary">
@@ -27,6 +27,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Titre</th>
                 <th scope="col">Statut</th>
+                <th scope="col" style="width: 260px;">Catalogue</th>
                 <th scope="col">Description</th>
                 <th scope="col">Action</th>
             </tr>
@@ -43,9 +44,10 @@
                         Inactif
                     {% endif %}
                 </td>
+                <td>{{ template.catalog_id }}</td>
                 <td style="max-width: 10em;">{{ template.overview|striptags|length > 100 ? template.overview|striptags|slice(0, 100) ~ '...' : template.overview|striptags }}</td>
                 <td>
-                    <a href="{{ getRoute('Rapport:edit',{'template':template.id}) }}" title="Faire le rapport" class="mx-2">
+                    <a href="{{ getRoute('Rapport:local_edit',{'ref':template.slug}) }}" title="Faire le rapport" class="mx-2">
                         <ion-icon name="newspaper-outline" style="font-size:24px;color:blue"></ion-icon>
                     </a>
                 </td>
