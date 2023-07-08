@@ -36,7 +36,7 @@ class Helper
     public static function applyDataToTemplate(&$template, $data):void
     {
         $data = Helper::formatData($data);
-        //echo'<pre>';var_dump($data);die;
+        
         foreach($data as $key => $value)
         {
             $template = str_replace('{'.$key.'}', $value ?? '', $template);

@@ -34,8 +34,8 @@
                         {% else %}
                             {% set inactif = 'selected' %}
                         {% endif %}
-                        <option {{ template.status == 1 ?? "selected=selected" }} {{ actif }} value="1">Actif</option>
-                        <option {{ template.status == 0 ?? "selected=selected" }} {{ inactif }} value="0">Inactif</option>
+                        <option {{ actif }} value="1">Actif</option>
+                        <option {{ inactif }} value="0">Inactif</option>
                     </select>
                 </div>
                 <div class="mb-3 col-md-4">

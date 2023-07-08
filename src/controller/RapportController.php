@@ -53,7 +53,7 @@ class RapportController extends SaboController {
         $data = HumanoService::getBimService($ref);
 
         if (empty($data)) die("Catalogue non trouvé dans humano...");
-        //echo'<pre>';var_dump($data);die;
+        
         try {
             $templateManager = new TemplateManager();        
             $templateData = $templateManager->getByCatalog($data['sysBusinessCatalogItem']['id']);
