@@ -47,7 +47,7 @@
                 <td>{{ template.catalog_id }}</td>
                 <td style="max-width: 10em;">{{ template.overview|striptags|length > 100 ? template.overview|striptags|slice(0, 100) ~ '...' : template.overview|striptags }}</td>
                 <td>
-                    <a href="{{ getRoute('Rapport:local_edit',{'ref':template.slug}) }}" title="Faire le rapport" class="mx-2">
+                    <a href="{{ getRoute('Rapport:edit',{'ref':template.slug}) }}" title="Faire le rapport" class="mx-2">
                         <ion-icon name="newspaper-outline" style="font-size:24px;color:blue"></ion-icon>
                     </a>
                 </td>

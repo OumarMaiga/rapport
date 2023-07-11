@@ -95,21 +95,7 @@ class TemplateManager extends SaboMiddleware
             
             $result = TemplateModel::find(["slug" => $template]);
 
-            if(!empty($result))
-            {
-                $result = $result[0];
-                $templateData = [
-                    "id" => $result->getAttribute("id"),
-                    "title" => $result->getAttribute("title"),
-                    "slug" => $result->getAttribute("slug"),
-                    "overview" => $result->getAttribute("overview"),
-                    "status" => $result->getAttribute("status"),
-                    "catalog_id" => $result->getAttribute("catalog_id"),
-                    "created_by" => $result->getAttribute("created_by"),
-                    "created_at" => $result->getAttribute("created_at"),
-                    "updated_at" => $result->getAttribute("updated_at")
-                ];
-            }
+            if(!empty($result)) $templateData = $result[0]->getAsArray();
             
         } catch (TypeError $e) {
             $this->throwException($e->getMessage());
@@ -129,21 +115,7 @@ class TemplateManager extends SaboMiddleware
             
             $result = TemplateModel::find(["catalog_id" => $template]);
 
-            if(!empty($result))
-            {
-                $result = $result[0];
-                $templateData = [
-                    "id" => $result->getAttribute("id"),
-                    "title" => $result->getAttribute("title"),
-                    "slug" => $result->getAttribute("slug"),
-                    "overview" => $result->getAttribute("overview"),
-                    "status" => $result->getAttribute("status"),
-                    "catalog_id" => $result->getAttribute("catalog_id"),
-                    "created_by" => $result->getAttribute("created_by"),
-                    "created_at" => $result->getAttribute("created_at"),
-                    "updated_at" => $result->getAttribute("updated_at")
-                ];
-            }
+            if(!empty($result)) $templateData = $result[0]->getAsArray();
             
         } catch (TypeError $e) {
             $this->throwException($e->getMessage());

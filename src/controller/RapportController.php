@@ -32,9 +32,9 @@ class RapportController extends SaboController {
 
     public function local_edit($ref):void
     {
-        $data = file_get_contents(ROOT . "bimProjects.json");
+        $data = @file_get_contents(ROOT . "bimProjects.json");
 
-        $data = $data ? json_decode($data,true) : [];
+        $data = $data ? @json_decode($data,true) : [];
             
         try {
             $templateManager = new TemplateManager();        
