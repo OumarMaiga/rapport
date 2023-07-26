@@ -77,7 +77,10 @@ class RapportController extends SaboController {
             "debug" => SaboConfig::getBoolConfig(SaboConfigAttributes::DEBUG_MODE)
         ]);
         
-        $pdfCreator->writeHTML($twig->render("/rapport/document.twig",["rapport" => $_POST["rapport"]]));
+        $pdfCreator->writeHTML($twig->render("/rapport/document.twig",[
+            "rapport" => $_POST["rapport"],
+            "app_url" => APP_URL
+        ]));
         
         $pdfCreator->output($name.'.pdf');
     }

@@ -70,7 +70,7 @@ class FileHelper{
 
         $this->fileDatas = [
             "extension" => "." . array_pop($pathPart),
-            "folder" => dirname($this->filepath) . "\\"
+            "folder" => dirname($this->filepath) . "/"
         ];
     }
 
@@ -109,10 +109,10 @@ class FileHelper{
             header("Expires: 0");
             header("Cache-Control: must-revalidate");
             header("Pragma: public");
-            header("Content-Length: " . filesize($filepath));
+            header("Content-Length: " . filesize($filepath) );
             flush();
-            readfile($filepath);
-            die();
+            
+            if(@readfile($filepath) != false) return true;
         }
 
         return false;

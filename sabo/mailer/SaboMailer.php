@@ -26,6 +26,8 @@ class SaboMailer extends PHPMailer{
      * @param config configuration du mailer (clés SaboMailerConfig->value)
      */
     public function __construct(array $config){
+        parent::__construct(SaboConfig::getBoolConfig(SaboConfigAttributes::DEBUG_MODE) );
+
         $this->config = $config;
     }
 
@@ -40,8 +42,6 @@ class SaboMailer extends PHPMailer{
      * @throws Exception en mode debug en cas d'échec d'envoi du mail ou destinataires incorrects
      */
     public function sendMailFromTemplate(array $recipients,string $subject,string $altBody,string $templatePath,array $datasForTemplate):bool{
-        $this->reset();
-
         // vériifcation de l'existance des destinataires
         if(empty($recipients) ){
             if(SaboConfig::getBoolConfig(SaboConfigAttributes::DEBUG_MODE) )
@@ -97,8 +97,6 @@ class SaboMailer extends PHPMailer{
      * @throws Exception en mode debug en cas d'échec d'envoi du mail ou destinataires incorrects
      */
     public function sendBasicMail(array $recipients,string $subject,string $mailContent,):bool{
-        $this->reset();
-
         // vérification des destinataires
 
         if(empty($recipients) ){
@@ -128,8 +126,9 @@ class SaboMailer extends PHPMailer{
 
     /**
      * réinitialise le mailer
+     * @return this
      */
-    private function reset():void{
+    public function reset():SaboMailer{
         $this->isSMTP();
         $this->CharSet = "UTF-8";
         $this->Encoding = "base64";
@@ -143,5 +142,7 @@ class SaboMailer extends PHPMailer{
         $this->clearAttachments();
         $this->Subject = $this->AltBody = $this->Body = "";
         $this->isHTML(false);
+
+        return $this;
     }
 }

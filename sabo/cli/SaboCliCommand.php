@@ -11,6 +11,14 @@ abstract class SaboCliCommand{
     private static array $commands;
 
     /**
+     * vérifie si la saisie vaux la touche entrée
+     * @return bool si la touche entrée a été utilisé
+     */
+    protected function isEnter(string $input):bool{
+        return empty(trim($input) );
+    }
+
+    /**
      * exécute la commande présente en ligne
      */
     public static function execArgvCommand(int $argc,?array $argv):void{
@@ -44,15 +52,17 @@ abstract class SaboCliCommand{
         }
 
         // vérification en cas de demande d'aide
-        if($argc > 2 && in_array($argv[1],["--help","-h","--h"]) ){
+        if($argc > 2 && in_array($argv[2],["--help","-h","--h"]) ){
             self::printMessage($commandClass->getHelp() );
 
             return;
         }
 
+        $command = $argv[1];
+        
         $argv = array_slice($argv,2);
 
-        self::printMessage($commandClass->execCommand($argc - 2,$argv) ? "succès" : "échec");
+        self::printMessage($commandClass->execCommand($argc - 2,$argv,$command) ? "succès" : "échec");
     }
 
     /**
@@ -72,7 +82,7 @@ abstract class SaboCliCommand{
      * affiche le message donnée
      * @param message le message à afficher
      */
-    protected static function printMessage(string $message):void{
+    public static function printMessage(string $message):void{
         echo "\nsabo >> {$message}";
     }
 
@@ -93,8 +103,9 @@ abstract class SaboCliCommand{
      * exécute la commande
      * @param argc taille de argv
      * @param argv les arguments de la ligne de commande
+     * @param calledCommand la commande appelé
      */
-    protected abstract function execCommand(int $argc,array $argv):bool; 
+    public abstract function execCommand(int $argc,array $argv,string $calledCommand):bool; 
 
     /**
      * @return une description de la commande

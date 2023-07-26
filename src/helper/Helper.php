@@ -71,31 +71,31 @@ class Helper
                                                 {                                            
                                                     if(gettype($data[$key][$key2][$key3][$key4][$key5][$key6]) != "array")
                                                     {
-                                                        $result[$key.'~'.$key2.'~'.$key3.'~'.$key4.'~'.$key5.'~'.$key6] = $value6;
+                                                        $result[$key.'.'.$key2.'.'.$key3.'.'.$key4.'.'.$key5.'.'.$key6] = $value6;
                                                     }
                                                 }
                                             }
                                             else
                                             {
-                                                $result[$key.'~'.$key2.'~'.$key3.'~'.$key4.'~'.$key5] = $value5;
+                                                $result[$key.'.'.$key2.'.'.$key3.'.'.$key4.'.'.$key5] = $value5;
                                             }
                                         }
                                     }
                                     else
                                     {
-                                        $result[$key.'~'.$key2.'~'.$key3.'~'.$key4] = $value4;
+                                        $result[$key.'.'.$key2.'.'.$key3.'.'.$key4] = $value4;
                                     }
                                 }
                             }
                             else
                             {
-                                $result[$key.'~'.$key2.'~'.$key3] = $value3;
+                                $result[$key.'.'.$key2.'.'.$key3] = $value3;
                             }
                         }
                     }
                     else
                     {
-                        $result[$key.'~'.$key2] = $value2;
+                        $result[$key.'.'.$key2] = $value2;
                     }
                 }
             }

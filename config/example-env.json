@@ -1,0 +1,18 @@
+{
+    "viewEnv" : {
+
+    },
+    "configEnv" : {
+        "database" : {
+            "host" : "",
+            "user" : "",
+            "password" : "",
+            "name" : ""
+        },
+        "mailer" : {
+            "email" : "",
+            "password" : "",
+            "host" : "smtp.gmail.com"
+        }
+    }
+}
