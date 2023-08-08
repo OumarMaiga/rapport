@@ -12,15 +12,19 @@
 {% endblock %}
     
 {% block body %}
-    <form action="{{ postRoute('Rapport:export_pdf',{"name":rapport.slug}) }}" method="post" target="_blank">
+    <form action="{{ postRoute('Rapport:export_pdf',{"name":ref}) }}" method="post" target="_blank">
         <div class="row">
             <div class="col-md-12">
                 <textarea name="rapport" id="rapport" rows="30">{{ rapport.overview }}</textarea>
             </div>
         </div>
 
-        <!----><button type="submit" class="btn btn-success">
-            Exporter en pdf
-        </button>
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-success">
+                    Exporter en pdf
+                </button>
+            </div>
+        </div>
     </form>
 {% endblock %}

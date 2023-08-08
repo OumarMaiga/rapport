@@ -63,7 +63,8 @@ class RapportController extends SaboController {
             $this->getErrorMessageFrom(new MiddlewareException($e->getMessage()));
         }
         $this->render('rapport/edit.twig',[
-            "rapport" => $templateData
+            "rapport" => $templateData,
+            "ref" => $ref
         ]);
     }
 
